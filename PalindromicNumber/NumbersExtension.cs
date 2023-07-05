@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace PalindromicNumberTask
 {
@@ -15,7 +15,34 @@ namespace PalindromicNumberTask
         /// <exception cref="ArgumentException"> Thrown when source number is less than zero. </exception>
         public static bool IsPalindromicNumber(int number)
         {
-            throw new NotImplementedException("You need to implement this method.");
+            if (number < 0)
+            {
+                throw new ArgumentException("Number less than zero", nameof(number));
+            }
+
+            int[] array = new int[10];
+            int count = 9;
+            while (number > 9)
+            {
+                array[count] = number % 10;
+                number /= 10;
+                count--;
+            }
+
+            array[count] = number;
+            int count2 = 9;
+            while (count < count2)
+            {
+                if (array[count] != array[count2])
+                {
+                    return false;
+                }
+
+                count++;
+                count2--;
+            }
+
+            return true;
         }
     }
 }
